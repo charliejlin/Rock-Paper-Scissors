@@ -7,11 +7,11 @@ buttonContainer.classList.add('buttonContainer');
 buttonContainer.classList.add('load');
 
 const rock = document.createElement('img');
-rock.src = "../images/rock.png";
+rock.src = "images/rock.png";
 rock.alt = "Image of a rock";
 
 const paper = document.createElement('img');
-paper.src = "../images/paper.png";
+paper.src = "images/paper.png";
 paper.alt = "Image of a paper";
 
 const scissors = document.createElement('img');
