@@ -25,6 +25,7 @@ let compScore = 0;
 
 // node that contains the scores
 const scoreKeeper = document.createElement('div');
+scoreKeeper.classList.add("scoreBox")
 
 // nodes that represent player and comp scores
 const trackPlayer = document.createElement('p')
