@@ -58,7 +58,7 @@ header > h1 {
     padding: 1em;
     animation-name: load;
     animation-duration: 1.5s;
-    animation-delay: 2.5s;
+    animation-delay: 3s;
     animation-timing-function: ease;
     animation-fill-mode: forwards;
 }
@@ -70,8 +70,7 @@ header > h1 {
     flex-wrap: wrap;
     min-width: 30%;
     max-width: 30%;
-    animation: load 1.5s 3s normal ease forwards;
-    margin-top: 2em;
+    animation: load 1.5s 2.5s normal ease forwards;
 }
 
 

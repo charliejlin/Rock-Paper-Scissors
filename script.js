@@ -51,16 +51,15 @@ trackComp.textContent = "Computer: " + compScore.toString();
 scoreKeeper.appendChild(trackPlayer);
 scoreKeeper.appendChild(trackComp);
 
-//append score container to root container
-root.appendChild(scoreKeeper);
-
 const verdictMessage = document.createElement('p');
-
 verdictMessage.textContent = 'First to five points wins! Are you ready? Make a move to start!';
 verdictMessage.id = "verdictMessage";
 verdictMessage.classList.add('load');
 
 root.insertBefore(verdictMessage, buttonContainer);
+
+//append score container to root container
+root.insertBefore(scoreKeeper, buttonContainer);
 
 moveSelection.forEach((move) => {
     move.addEventListener('click', function (e) {
