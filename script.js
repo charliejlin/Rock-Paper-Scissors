@@ -67,6 +67,7 @@ moveSelection.forEach((move) => {
     });
 });
 
+
 const getComputerChoice = () => {
     const choices = ['Rock', 'Paper', 'Scissors'];
     const randomNumber = Math.floor(Math.random() * 3);
