@@ -1,8 +1,78 @@
+
+const root = document.querySelector("#root");
+
+//appends buttons to root
+const rock = document.createElement('button');
+const scissors = document.createElement('button');
+const paper = document.createElement('button');
+
+const moveSelection = [rock, scissors, paper];
+
+rock.textContent = 'Rock';
+scissors.textContent = 'Scissors';
+paper.textContent = 'Paper'
+
+moveSelection.forEach((move) => {
+    root.appendChild(move);
+})
+
+// int representations of player scores
+let playerScore = 0;
+let compScore = 0;
+
+
+//appends scores to container
+
+// node that contains the scores
+const scoreKeeper = document.createElement('div');
+
+// nodes that represent player and comp scores
+const trackPlayer = document.createElement('p')
+const trackComp = document.createElement('p')
+
+// shows the scores as an initial zero
+trackPlayer.textContent = playerScore.toString();
+trackComp.textContent = compScore.toString();
+
+//append the player and comp scores as children to scoreKeeper container node
+scoreKeeper.appendChild(trackPlayer);
+scoreKeeper.appendChild(trackComp);
+
+//append score container to root container
+root.appendChild(scoreKeeper);
+
+const verdictMessage = document.createElement('p');
+
+verdictMessage.textContent = 'First to five points win! Are you ready? Make a move to start!';
+
+root.insertBefore(verdictMessage, rock)
+
+moveSelection.forEach((move) => {
+    move.addEventListener('click', function (e) {
+        const verdict = playRound(e.target.textContent, getComputerChoice());
+
+        if (verdict.charAt(4) == 'w') {
+            playerScore++;
+            trackPlayer.textContent = playerScore.toString();
+            verdictMessage.textContent = "You won this round!";
+            checkWinner()
+        } else if (verdict.charAt(4) == 'l') {
+            compScore++;
+            trackComp.textContent = compScore.toString();
+            verdictMessage.textContent = "You lost this round!";
+            checkWinner();
+       } else {
+            verdictMessage.textContent = "It's a tie! Make another move!";
+       }
+    });
+});
+
 const getComputerChoice = () => {
     const choices = ['Rock', 'Paper', 'Scissors'];
     const randomNumber = Math.floor(Math.random() * 3);
     return choices[randomNumber];
 }
+
 const playRound = (playerSelection, computerSelection) => {
     //make moves case insensitive
     const playerMove = playerSelection.toLowerCase();
@@ -26,20 +96,21 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-const game = () => {
-    let playerScore = 0;
-    let compScore = 0;
-
-    while (playerScore < 3 && compScore < 3) {
-        const verdict = playRound(prompt(), getComputerChoice());
-        if (verdict.charAt(4) == 'w') {
-            playerScore++;
-        } else if (verdict.charAt(4) == 'l') {
-            compScore++;
-        }
-        console.log(verdict);
+//return string for verdict message
+const checkWinner = () => {
+    if (playerScore == 5) {
+        verdictMessage.textContent = "You won the game! Refresh to play another!";
+        disableButtons();
+    } else if (compScore == 5) {
+        verdictMessage.textContent = "You lost the game! Refresh to play another!";
+        disableButtons();
     }
-    console.log(playerScore > compScore ? "You Win!" : "You Lose!");
 }
 
-game();
+//disable buttons
+const disableButtons = () => {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.disabled = true;
+    })
+}
