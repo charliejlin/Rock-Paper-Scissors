@@ -15,7 +15,7 @@ paper.src = "images/paper.png";
 paper.alt = "Image of a paper";
 
 const scissors = document.createElement('img');
-scissors.src = "../images/scissors.png";
+scissors.src = "images/scissors.png";
 scissors.alt = "Image of scissors";
 
 const moveSelection = [rock, scissors, paper];
