@@ -1,15 +1,87 @@
 body {
     margin: 0px;
     padding: 0;
+    font-family: 'Hind', sans-serif;
 }
 
+@keyframes load {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+        visibility: visible;
+    }
+}
+
+.load {
+    visibility: hidden;
+}
 
 h1 {
     text-align: center;
 }
 
 #root {
+
     display: flex;
-    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10%;
 }
 
+header {
+    font-size: 2em;
+    animation: load 1.5s 1s normal ease forwards;
+    color: #0d6efd;
+}
+
+header > h1 {
+    margin-bottom: 0;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2em;
+    min-width: 50%;
+    max-width: 50%;;
+    flex-wrap: wrap;
+    font-weight: bold;
+}
+
+.buttonContainer > img {
+    border: solid;
+    border-color: #4a8ff5;
+    border-radius: 10%;
+    padding: 1em;
+    animation-name: load;
+    animation-duration: 1.5s;
+    animation-delay: 2.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.scoreBox {
+    display: flex;
+    font-size: 2em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 30%;
+    max-width: 30%;
+    animation: load 1.5s 3s normal ease forwards;
+    margin-top: 2em;
+}
+
+
+
+#verdictMessage {
+    font-size: 1.5em;
+    text-align: center;
+    animation-name: load;
+    animation-fill-mode: forwards;
+    animation-duration: 1.5s;
+    animation-delay: 2s;
+    animation-timing-function: ease;
+}
