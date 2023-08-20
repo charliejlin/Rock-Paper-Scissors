@@ -1,10 +1,22 @@
-
 const root = document.querySelector("#root");
 
 //appends buttons to root
-const rock = document.createElement('button');
-const scissors = document.createElement('button');
-const paper = document.createElement('button');
+const buttonContainer = document.createElement('div');
+
+buttonContainer.classList.add('buttonContainer');
+buttonContainer.classList.add('load');
+
+const rock = document.createElement('img');
+rock.src = "../images/rock.png";
+rock.alt = "Image of a rock";
+
+const paper = document.createElement('img');
+paper.src = "../images/paper.png";
+paper.alt = "Image of a paper";
+
+const scissors = document.createElement('img');
+scissors.src = "../images/scissors.png";
+scissors.alt = "Image of scissors";
 
 const moveSelection = [rock, scissors, paper];
 
@@ -13,27 +25,27 @@ scissors.textContent = 'Scissors';
 paper.textContent = 'Paper'
 
 moveSelection.forEach((move) => {
-    root.appendChild(move);
+    buttonContainer.appendChild(move);
 })
+
+root.appendChild(buttonContainer);
 
 // int representations of player scores
 let playerScore = 0;
 let compScore = 0;
 
-
-//appends scores to container
-
 // node that contains the scores
 const scoreKeeper = document.createElement('div');
-scoreKeeper.classList.add("scoreBox")
+scoreKeeper.classList.add("scoreBox");
+scoreKeeper.classList.add("load");
 
 // nodes that represent player and comp scores
-const trackPlayer = document.createElement('p')
-const trackComp = document.createElement('p')
+const trackPlayer = document.createElement('p');
+const trackComp = document.createElement('p');
 
 // shows the scores as an initial zero
-trackPlayer.textContent = playerScore.toString();
-trackComp.textContent = compScore.toString();
+trackPlayer.textContent = "Player: " + playerScore.toString();
+trackComp.textContent = "Computer: " + compScore.toString();
 
 //append the player and comp scores as children to scoreKeeper container node
 scoreKeeper.appendChild(trackPlayer);
@@ -44,9 +56,11 @@ root.appendChild(scoreKeeper);
 
 const verdictMessage = document.createElement('p');
 
-verdictMessage.textContent = 'First to five points win! Are you ready? Make a move to start!';
+verdictMessage.textContent = 'First to five points wins! Are you ready? Make a move to start!';
+verdictMessage.id = "verdictMessage";
+verdictMessage.classList.add('load');
 
-root.insertBefore(verdictMessage, rock)
+root.insertBefore(verdictMessage, buttonContainer);
 
 moveSelection.forEach((move) => {
     move.addEventListener('click', function (e) {
@@ -54,20 +68,20 @@ moveSelection.forEach((move) => {
 
         if (verdict.charAt(4) == 'w') {
             playerScore++;
-            trackPlayer.textContent = playerScore.toString();
+            trackPlayer.textContent = "Player: " + playerScore.toString();
             verdictMessage.textContent = "You won this round!";
             checkWinner()
         } else if (verdict.charAt(4) == 'l') {
             compScore++;
-            trackComp.textContent = compScore.toString();
+            trackComp.textContent = "Computer: " + compScore.toString();
             verdictMessage.textContent = "You lost this round!";
             checkWinner();
        } else {
             verdictMessage.textContent = "It's a tie! Make another move!";
        }
+
     });
 });
-
 
 const getComputerChoice = () => {
     const choices = ['Rock', 'Paper', 'Scissors'];
@@ -111,8 +125,15 @@ const checkWinner = () => {
 
 //disable buttons
 const disableButtons = () => {
-    const buttons = document.querySelectorAll('button');
+    const buttons = document.querySelectorAll('img');
     buttons.forEach((button) => {
-        button.disabled = true;
+        button.setAttribute('style', 'pointer-events: none;');
+    })
+}
+
+const enableButtons = () => {
+    const buttons = document.querySelectorAll('img');
+    buttons.forEach((button) => {
+        button.setAttribute('style', 'pointer-events: auto;');
     })
 }
