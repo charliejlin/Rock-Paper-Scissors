@@ -47,8 +47,18 @@ const trackComp = document.createElement('p');
 trackPlayer.textContent = "Player: " + playerScore.toString();
 trackComp.textContent = "Computer: " + compScore.toString();
 
-//append the player and comp scores as children to scoreKeeper container node
+// refresh button when either side wins
+const refreshButton = document.createElement('button');
+
+refreshButton.addEventListener('click', () => {
+    location.reload();
+})
+refreshButton.classList.add("refresh-button");
+refreshButton.innerHTML = "&#x21bb;"
+
+//append the player and comp scores and refresh button as children to scoreKeeper container node
 scoreKeeper.appendChild(trackPlayer);
+scoreKeeper.appendChild(refreshButton);
 scoreKeeper.appendChild(trackComp);
 
 const verdictMessage = document.createElement('p');
@@ -116,9 +126,11 @@ const checkWinner = () => {
     if (playerScore == 5) {
         verdictMessage.textContent = "You won the game! Refresh to play another!";
         disableButtons();
+        refreshButton.style.visibility = "visible"
     } else if (compScore == 5) {
         verdictMessage.textContent = "You lost the game! Refresh to play another!";
         disableButtons();
+        refreshButton.style.visibility = "visible"
     }
 }
 

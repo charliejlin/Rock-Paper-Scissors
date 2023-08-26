@@ -23,12 +23,12 @@ h1 {
 }
 
 #root {
-
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-top: 10%;
+    user-select: none;
 }
 
 header {
@@ -61,6 +61,7 @@ header > h1 {
     animation-delay: 3s;
     animation-timing-function: ease;
     animation-fill-mode: forwards;
+    cursor: pointer;
 }
 
 .scoreBox {
@@ -83,4 +84,14 @@ header > h1 {
     animation-duration: 1.5s;
     animation-delay: 2s;
     animation-timing-function: ease;
+}
+
+.refresh-button {
+    color: #4a8ff5;
+    padding: 0 0 0 45px;
+    border: none;
+    font-size: 2em;
+    background-color: transparent;
+    visibility: hidden;
+    cursor: pointer;
 }
